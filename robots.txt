@@ -1,4 +1,4 @@
-#robots.txtforTPshop
+#robots.txt
 User-agent: *
 Disallow:
 Disallow: /install/ 
