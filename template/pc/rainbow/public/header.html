@@ -16,8 +16,7 @@
                                               <div class="text"><div></div><b></b></div>
                                               <div onclick="$(this).parent().removeClass('hover')" class="close"></div>
                                           </div>
-                                      </div>
-                                  </li>
+                                      </li>
                               </ul>
                           </span>
                       </div>
@@ -240,8 +239,8 @@
 		<ul class="navitems clearfix" id="navitems">
 			<li <if condition=" CONTROLLER_NAME eq 'Index' ">class="selected"</if>><a href="{:U('Index/index')}">首页</a></li>
 			<tpshop sql="SELECT * FROM `__PREFIX__navigation` where is_show = 1 ORDER BY `sort` DESC" key="k" item='v'>
-			<li <?php if($_SERVER['REQUEST_URI']==str_replace('&amp;','&',$v[url])){ echo "class='selected'";}?>>
-       			<a href="{$v[url]}" <if condition="$v[is_new] eq 1">target="_blank" </if> >{$v[name]}</a>
+			<li <?php if($_SERVER['REQUEST_URI']==str_replace('&amp;','&',$v['url'])){ echo "class='selected'";}?> >
+       			<a href="{$v['url']}" <if condition="$v['is_new'] eq 1">target="_blank" </if> >{$v['name']}</a>
        		</li>
 			</tpshop>
 		</ul>
