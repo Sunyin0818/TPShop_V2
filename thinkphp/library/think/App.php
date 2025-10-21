@@ -271,9 +271,10 @@ class App
             $params = $reflect->getParameters();
             foreach ($params as $param) {
                 $name  = $param->getName();
-                $class = $param->getClass();
-                if ($class) {
-                    $className = $class->getName();
+                // 将被废弃的getClass()方法替换为getType()
+                $type = $param->getType();
+                if ($type && $type instanceof \ReflectionNamedType && !$type->isBuiltin()) {
+                    $className = $type->getName();
                     $bind      = Request::instance()->$name;
                     if ($bind instanceof $className) {
                         $args[] = $bind;
