@@ -174,7 +174,7 @@
 				<div class="cata-nav" id="cata-nav">
 				<volist name="goods_category_tree" id="v" key="kr">
 					<div class="item">
-						<if condition="$v[level] eq 1">
+						<if condition="$v['level'] eq 1">
 						<div class="item-left">
 							<h3 class="cata-nav-name">
 								<div class="cata-nav-wrap">
@@ -194,7 +194,7 @@
 								</div>
 								<div class="subitems">
 									<foreach name="v['tmenu']" key="k2" item='v2'>
-									<if condition="$v2[parent_id] eq $v['id']">
+									<if condition="$v2['parent_id'] eq $v['id']">
 										<dl class="clearfix">
 											<dt><a href="{:U('Home/Goods/goodsList',array('id'=>$v2[id]))}" target="_blank">{$v2[name]}</a></dt>
 											<dd class="clearfix">
