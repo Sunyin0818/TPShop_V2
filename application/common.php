@@ -790,7 +790,7 @@ function orderBtn($order_id = 0, $order = array())
     else
     {
         if($order['pay_status'] == 0 && $order['order_status'] == 0) // 待支付
-        {
+{
             $btn_arr['pay_btn'] = 1; // 去支付按钮
             $btn_arr['cancel_btn'] = 1; // 取消按钮
         }
@@ -1092,7 +1092,7 @@ function get_order_promotion($order_amount)
  * @param int $coupon_id 优惠券
  * @return array
  */
-function calculate_price($user_id = 0, $order_goods, $shipping_code = '', $shipping_price = 0, $province = 0, $city = 0, $district = 0, $pay_points = 0, $user_money = 0, $coupon_id = 0)
+function calculate_price($order_goods, $user_id = 0, $shipping_code = '', $shipping_price = 0, $province = 0, $city = 0, $district = 0, $pay_points = 0, $user_money = 0, $coupon_id = 0)
 {
     $couponLogic = new \app\common\logic\CouponLogic();
     $goodsLogic = new app\common\logic\GoodsLogic();
