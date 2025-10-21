@@ -1029,7 +1029,7 @@ function order_give($order)
             $prom_order = $prom_orders[$i];
             if ($prom_order['type'] == 3) {
                 //查找订单送优惠券模板
-                $order_coupon = M('coupon')->where("id", $prom_order['expression'])->find();
+$order_coupon = M('coupon')->where("id", $prom_order['expression'])->find();
                 if ($order_coupon) {
                     //优惠券发放数量验证，0为无限制。发放数量-已领取数量>0
                     if ($order_coupon['createnum'] == 0 ||
@@ -1324,11 +1324,11 @@ function getTotalAddress($province_id, $city_id, $district_id, $twon_id, $addres
 /**
  * 商品库存操作日志
  * @param int $muid 操作 用户ID
- * @param int $stock 更改库存数
  * @param array $goods 库存商品
+ * @param int $stock 更改库存数
  * @param string $order_sn 订单编号
  */
-function update_stock_log($muid, $stock = 1, $goods, $order_sn = '')
+function update_stock_log($muid, $goods, $stock = 1, $order_sn = '')
 {
     $data['ctime'] = time();
     $data['stock'] = $stock;
