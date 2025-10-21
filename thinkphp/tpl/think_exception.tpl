@@ -74,6 +74,21 @@
             return implode(', ', $result);
         }
     }
+    // 在文件开头已有的辅助函数定义后添加lang()函数
+    if(!function_exists('lang')){
+        /**
+         * 获取语言变量值
+         * @param string $name 语言变量名
+         * @param array $vars 变量替换
+         * @param string $range 语言作用域
+         * @return mixed
+         */
+        function lang($name, $vars = [], $range = '')
+        {
+            return think\Lang::get($name, $vars, $range);
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html>
