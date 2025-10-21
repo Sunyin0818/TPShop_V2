@@ -132,10 +132,11 @@ switch ($step) {
         include_once ("./templates/step2.php");
         exit();
 
+    // 修复第136-138行的未定义数组键警告
     case '3':
-		$dbName = strtolower(trim($_POST['dbName']));
-		$_POST['dbport'] = $_POST['dbport'] ? $_POST['dbport'] : '3306';
-        if ($_GET['testdbpwd']) {
+        $dbName = isset($_POST['dbName']) ? strtolower(trim($_POST['dbName'])) : '';
+        $_POST['dbport'] = isset($_POST['dbport']) ? $_POST['dbport'] : '3306';
+        if (isset($_GET['testdbpwd'])) {
             $dbHost = $_POST['dbHost'];
             $conn = @mysqli_connect($dbHost, $_POST['dbUser'], $_POST['dbPwd'],NULL,$_POST['dbport']);            
             if (mysqli_connect_errno()){                
@@ -167,15 +168,15 @@ switch ($step) {
             $arr = array();
 
             $dbHost = trim($_POST['dbhost']);
-            $_POST['dbport'] = $_POST['dbport'] ? $_POST['dbport'] : '3306';
-            $dbName = strtolower(trim($_POST['dbname']));            
-            $dbUser = trim($_POST['dbuser']);
-            $dbPwd = trim($_POST['dbpw']);
-            $dbPrefix = empty($_POST['dbprefix']) ? 'tp_' : trim($_POST['dbprefix']);
+            $_POST['dbport'] = isset($_POST['dbport']) ? $_POST['dbport'] : '3306';
+            $dbName = isset($_POST['dbname']) ? strtolower(trim($_POST['dbname'])) : '';
+            $dbUser = isset($_POST['dbuser']) ? trim($_POST['dbuser']) : '';
+            $dbPwd = isset($_POST['dbpw']) ? trim($_POST['dbpw']) : '';
+            $dbPrefix = isset($_POST['dbprefix']) ? trim($_POST['dbprefix']) : 'tp_';
 
-            $username = trim($_POST['manager']);
-            $password = trim($_POST['manager_pwd']);
-            $email	  = trim($_POST['manager_email']);
+            $username = isset($_POST['manager']) ? trim($_POST['manager']) : '';
+            $password = isset($_POST['manager_pwd']) ? trim($_POST['manager_pwd']) : '';
+            $email = isset($_POST['manager_email']) ? trim($_POST['manager_email']) : '';
             /*
             //网站名称
             $site_name = addslashes(trim($_POST['sitename']));
@@ -194,7 +195,7 @@ switch ($step) {
             }			
 			
             $conn = @mysqli_connect($dbHost, $dbUser, $dbPwd,NULL,$_POST['dbport']);
-            if (mysqli_connect_errno($conn)){
+            if (mysqli_connect_errno()){
                 $arr['msg'] = "连接数据库失败!".mysqli_connect_error($conn);           
                 echo json_encode($arr);
                 exit;
