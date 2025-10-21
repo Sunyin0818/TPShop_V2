@@ -188,9 +188,11 @@
 						<div class="cata-nav-layer">
 							<div class="cata-nav-left">
 								<div class="cata-layer-title">
-									<foreach name="v.hot_cate" item="hc">
-									<a class="layer-title-item" href="">{$hc.name}<i class="ico ico-arrow-right">></i></a>
+									<if condition="isset($v['hot_cate']) && !empty($v['hot_cate'])">
+									<foreach name="v['hot_cate']" item="hc">
+									<a class="layer-title-item" href="">{$hc['name']}<i class="ico ico-arrow-right">></i></a>
 									</foreach>
+									</if>
 								</div>
 								<div class="subitems">
 									<foreach name="v['tmenu']" key="k2" item='v2'>
@@ -199,7 +201,7 @@
 											<dt><a href="{:U('Home/Goods/goodsList',array('id'=>$v2['id']))}" target="_blank">{$v2['name']}</a></dt>
 											<dd class="clearfix">
 												<foreach name="v2['sub_menu']" key="k3" item='v3'>
-													<if condition="$v3[parent_id] eq $v2['id']">
+													<if condition="$v3['parent_id'] eq $v2['id']">
 													<a href="{:U('Home/Goods/goodsList',array('id'=>$v3['id']))}" target="_blank">{$v3['name']}</a>
 													</if>
 												</foreach>
