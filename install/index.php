@@ -137,23 +137,23 @@ switch ($step) {
 		$_POST['dbport'] = $_POST['dbport'] ? $_POST['dbport'] : '3306';
         if ($_GET['testdbpwd']) {
             $dbHost = $_POST['dbHost'];
-            $conn = @mysqli_connect($dbHost, $_POST['dbUser'], $_POST['dbPwd'],NULL,$_POST['dbport']);			
-            if (mysqli_connect_errno($conn)){				
-				die(json_encode(0));                
+            $conn = @mysqli_connect($dbHost, $_POST['dbUser'], $_POST['dbPwd'],NULL,$_POST['dbport']);            
+            if (mysqli_connect_errno()){                
+                die(json_encode(0));                 
             } else {
-				$result = mysqli_query($conn,"SELECT @@global.sql_mode");				
-				$result = $result->fetch_array();
-				$version = mysqli_get_server_info($conn);
-				if ($version >= 5.7) 
-				{
-					if(strstr($result[0],'STRICT_TRANS_TABLES') || strstr($result[0],'STRICT_ALL_TABLES') || strstr($result[0],'TRADITIONAL') || strstr($result[0],'ANSI'))				
-						exit(json_encode(-1));
-				}
-				$result = mysqli_query($conn,"select count(table_name) as c from information_schema.`TABLES` where table_schema='$dbName'");
-				$result = $result->fetch_array();
-				if($result['c'] > 0)
-					exit(json_encode(-2));
-				
+                $result = mysqli_query($conn,"SELECT @@global.sql_mode");				
+                $result = $result->fetch_array();
+                $version = mysqli_get_server_info($conn);
+                if ($version >= 5.7) 
+                {
+                    if(strstr($result[0],'STRICT_TRANS_TABLES') || strstr($result[0],'STRICT_ALL_TABLES') || strstr($result[0],'TRADITIONAL') || strstr($result[0],'ANSI'))				
+                        exit(json_encode(-1));
+                }
+                $result = mysqli_query($conn,"select count(table_name) as c from information_schema.`TABLES` where table_schema='$dbName'");
+                $result = $result->fetch_array();
+                if($result['c'] > 0)
+                    exit(json_encode(-2));
+                
                 exit(json_encode(1));
             }
         }		 		
