@@ -2564,7 +2564,7 @@ class Query
         }
         if ($resultSet instanceof Collection) {
             $resultSet = $resultSet->all();
-        }
+}
 
         while (!empty($resultSet)) {
             if (false === call_user_func($callback, $resultSet)) {
@@ -2720,6 +2720,10 @@ class Query
                     } elseif (array_key_exists($key, $options['map'])) {
                         $options['order'][$options['map'][$key]] = $val;
                         unset($options['order'][$key]);
+                    }
+                    } else {
+                        // 按照字段的首字母的值分表
+                        $seq = (ord($value[0]) % $rule['num']) + 1;
                     }
                 }
             }
