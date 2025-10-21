@@ -100,13 +100,13 @@ class Cx extends Taglib
     }     
 	public function tagAdv($tag, $content)
         {
-     	$order = $tag['order']; //排序
+     	$order = !empty($tag['order']) ? $tag['order'] : ''; //排序
         $limit = !empty($tag['limit']) ? $tag['limit'] : '1'; 
-        $where = $tag['where']; //查询条件
-        $item  = !empty($tag['item']) ? $tag['item'] : 'item';// 返回的变量item	
+        $where = !empty($tag['where']) ? $tag['where'] : ''; //查询条件
+        $item  = !empty($tag['item']) ? $tag['item'] : 'item';// 返回的变量item 
         $key  =  !empty($tag['key']) ? $tag['key'] : 'key';// 返回的变量key
         $pid  =  !empty($tag['pid']) ? $tag['pid'] : '0';// 返回的变量key
-           
+               
         $str = '<?php ';
         $str .= '$pid ='.$pid.';';
         $str .= '$ad_position = M("ad_position")->cache(true,TPSHOP_CACHE_TIME)->column("position_id,position_name,ad_width,ad_height","position_id");';
