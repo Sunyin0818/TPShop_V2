@@ -61,8 +61,9 @@ class Base extends Controller {
        $brand_list = M('brand')->cache(true)->field('id,name,parent_cat_id,logo,is_hot')->where("parent_cat_id>0")->select();
        $this->assign('brand_list', $brand_list);
        $this->assign('tpshop_config', $tpshop_config);
-        $user = session('user');
-        $this->assign('username',$user['nickname']);
+       $user = session('user');
+       $username = $user ? $user['nickname'] : '';
+       $this->assign('username', $username);
     }
 
     /*
